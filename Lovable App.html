@@ -2249,4 +2249,21 @@ html { scroll-behavior: smooth; }
           bg-primary text-primary-foreground
           hover:shadow-[0_0_30px_-6px_hsl(var(--glow-primary)/0.4)] hover:scale-[1.02]">Regisztráció a fogadóirodákhoz<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-arrow-right w-4 h-4"><path d="M5 12h14"></path><path d="m12 5 7 7-7 7"></path></svg></a></div></div></main></div></div></div>
   
-<div class="tp-extension"></div></body></html>
+<div class="tp-extension"></div><script>
+(function () {
+  const bar = document.querySelector('.progress-bar-fill');
+  if (!bar) return;
+
+  const updateProgress = () => {
+    const scrollTop = window.scrollY || document.documentElement.scrollTop || 0;
+    const scrollHeight = document.documentElement.scrollHeight - window.innerHeight;
+    const progress = scrollHeight > 0 ? Math.min(scrollTop / scrollHeight, 1) : 0;
+    bar.style.transform = `scaleX(${progress})`;
+  };
+
+  updateProgress();
+  window.addEventListener('scroll', updateProgress, { passive: true });
+  window.addEventListener('resize', updateProgress);
+})();
+</script>
+</body></html>
